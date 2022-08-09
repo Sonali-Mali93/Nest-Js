@@ -9,8 +9,10 @@ import {
   Query,
 } from '@nestjs/common';
 
+import { BlogsService } from '../blogs/blogs.service';
 @Controller('users')
 export class UsersController {
+  constructor(private blogsService: BlogsService) {}
   @Get()
   userInfo(): number {
     let x: number = 10;
@@ -54,10 +56,31 @@ export class UsersController {
     console.log(record);
     return record;
   }
-
+  // http://localhost:3000/users/details44no
   @Post('details*no')
   detailPage(): string {
     console.log('detail');
     return 'details';
   }
+
+  // services for blogs
+  @Get('blog-list')
+  blogList() {
+    return this.blogsService.findData();
+  }
+
+  @Post('blog-add')
+  blogAdd(@Body() record: any) {
+    this.blogsService.create(record);
+    return record;
+  }
+  @Get('blog-del')
+  Delete(@Body() record: any) {
+    this.blogsService.deleteData();
+  }
+
+  // @Post('blog-update')
+  // blogUpdate(@Body() record: any): any {
+  //   this.blogsService.updateData(record);
+  // }
 }
