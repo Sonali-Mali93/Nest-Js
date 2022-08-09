@@ -13,12 +13,6 @@ describe('UsersController', () => {
   });
 
   it('should be defined', () => {
-    expect(controller.userInfo()).toBe(100);
+    expect(controller.userInfo()).toBe(200);
   });
 });
-
-// describe('root', () => {
-//   it('should return "Hello World!"', () => {
-//     expect(appController.getHello()).toBe('Hello World!');
-//   });
-// });
